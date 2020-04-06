@@ -1,5 +1,7 @@
 package com.zipcodewilmington;
 
+import java.util.stream.Stream;
+
 /**
  * Created by leon on 1/24/18.
  */
@@ -25,7 +27,6 @@ public class PersonHandler {
 
     public String forLoop() {
         String result = "";
-
         for (int counter = 0; counter <= personArray.length - 1; counter++){
             Person currentPerson = personArray[counter];
             result += currentPerson.toString();
@@ -36,11 +37,11 @@ public class PersonHandler {
 
 
     public String forEachLoop() {
-        String result = "";
-        for(Person currentPerson : personArray){
-            result += currentPerson.toString();
-        }
-        return result;
+        StringBuilder builder = new StringBuilder();
+        Stream.of(personArray).forEach(person -> {
+            builder.append(person.toString());
+        });
+        return builder.toString();
     }
 
 
